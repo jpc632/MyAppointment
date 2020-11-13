@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form class="forms-sample" method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -45,7 +45,6 @@
                             <div class="col-md-6">
 
                                 <select id="gender" type="gender" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}" required autocomplete="gender">
-                                    <option value=""></option>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
                                 </select>
