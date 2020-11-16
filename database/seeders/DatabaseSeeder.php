@@ -15,11 +15,11 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
         Role::create([
-            'name' => 'doctor'
+            'name' => 'admin'
         ]);
         
         Role::create([
-            'name' => 'admin'
+            'name' => 'doctor'
         ]);
         
         Role::create([
