@@ -134,7 +134,7 @@
                                 <label for="department">Specialisation</label>
                                 <select class="form-control @error('department') is-invalid @enderror" name="department" value="{{ $doctor->department}}">
                                     @foreach(['GP', 'PCP', 'Physician', 'Nurse'] as $department)
-                                        <option value="{{ $gender }}" @if($doctor->department == $department) selected @endif>{{ $department }}</option>
+                                        <option value="{{ $department }}" @if($doctor->department == $department) selected @endif>{{ $department }}</option>
                                     @endforeach
                                 </select>
                                 @error('department')

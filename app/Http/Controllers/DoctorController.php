@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Role;
 
@@ -16,7 +17,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors = User::where('role_id', '!=' ,'3')->get();
+        $doctors = User::where('role_id', '!=', '3')->get();
         return view('admin.doctor.index', ['doctors' => $doctors]);
     }
 
@@ -151,7 +152,7 @@ class DoctorController extends Controller
         if($img == null) 
             return;
 
-        $image = stripslashes(Hash::make($img->getClientOriginalName())) . '.' .$img->getClientOriginalExtension();
+        $image = Hash::make($img->getClientOriginalName()) . '.' .$img->getClientOriginalExtension();
         $image = str_replace('/','',$image);
         $img->move((public_path('images')), $image);
         
@@ -166,13 +167,16 @@ class DoctorController extends Controller
      */
     public function destroy($id)
     {
-        $doctor = User::find($id);
-
-        $image = $doctor->image;
-        if(file_exists(public_path('images/' . $image)) && $image != '')
-            unlink(public_path('images/' . $image));
+        if(Auth::user()->id == $id)
+            abort(401);
             
+        $doctor = User::find($id);
+        $image = $doctor->image;
+        
+        if(file_exists(public_path('images/' . $image)) && $image != '')
+            unlink(public_path('images/' . $image));   
         $doctor->delete();
+
         return redirect()->route('doctor.index')->with('message', 'Doctor deleted successfully!');
     }
 }
