@@ -97,7 +97,7 @@
         </div>
         
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script>window.jQuery || document.write('<script src="src/js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+        <script>window.jQuery || document.write('<script src="theme/src/js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
         <script src="{{asset('theme/plugins/popper.js/dist/umd/popper.min.js')}}"></script>
         <script src="{{asset('theme/plugins/bootstrap/dist/js/bootstrap.min.js')}}"></script>
         <script src="{{asset('theme/plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js')}}"></script>
@@ -124,6 +124,33 @@
             e.src='https://www.google-analytics.com/analytics.js';
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>
+
+        {{-- Admin Date format --}}
+        <script type="text/javascript">
+            //format date
+            $(document).ready(function(){
+                $("#datepicker").datetimepicker({
+                    format: 'YYYY-MM-DD'
+                });
+            });
+
+            //check all boxes
+            const checkAll = document.getElementById('checkAll');
+            
+            checkAll.addEventListener( 'change', function() {
+                const checkBoxes = document.querySelectorAll("#check");
+
+                if(this.checked) {
+                    for(let i = 0; i < checkBoxes.length; i++){
+                        checkBoxes[i].classList.add('active');
+                    }
+                }else{
+                    for(let i = 0; i < checkBoxes.length; i++){
+                        checkBoxes[i].classList.remove('active');
+                    }
+                }
+            });
         </script>
     </body>
 </html>
