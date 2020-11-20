@@ -10,17 +10,17 @@
             @endif
             <div class="card">
                 <div class="card-header">
-                    <h3>Edit Doctor</h3>
+                    <h3>Edit Staff</h3>
                 </div>
                 <div class="card-body">
-                    <form class="forms-sample " method="POST" action="{{ route('doctor.update', $doctor->id) }}" enctype="multipart/form-data">
+                    <form class="forms-sample " method="POST" action="{{ route('doctor.update', $staff->id) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row p-2">
                             <div class="col-lg-6">
                                 <label for="name">Name</label>
                                 <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                                    value="{{ $doctor->name }}" >
+                                    value="{{ $staff->name }}" >
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -31,7 +31,7 @@
                             <div class="col-lg-6">
                                 <label for="email">E-mail</label>
                                 <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                                    value="{{ $doctor->email }}" >
+                                    value="{{ $staff->email }}" >
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -56,7 +56,7 @@
                                 <label for="gender">Gender</label>
                                 <select class="form-control @error('gender') is-invalid @enderror" name="gender">
                                     @foreach(['male', 'female'] as $gender)
-                                        <option value="{{ $gender }}" @if($doctor->gender == $gender) selected @endif>{{ $gender }}</option>
+                                        <option value="{{ $gender }}" @if($staff->gender == $gender) selected @endif>{{ $gender }}</option>
                                     @endforeach
                                 </select>
 
@@ -72,7 +72,7 @@
                                 <label for="education">Degree</label>
                                 <input type="text" name="education"
                                     class="form-control @error('education') is-invalid @enderror"
-                                    value="{{$doctor->education}}" >
+                                    value="{{$staff->education}}" >
 
                                 @error('education')
                                     <span class="invalid-feedback" role="alert">
@@ -83,7 +83,7 @@
                             <div class="col-lg-6">
                                 <label for="address">Address</label>
                                 <input type="text" name="address"
-                                    class="form-control @error('address') is-invalid @enderror" value="{{ $doctor->address }}"
+                                    class="form-control @error('address') is-invalid @enderror" value="{{ $staff->address }}"
                                     >
 
                                 @error('address')
@@ -98,7 +98,7 @@
                                 <label for="phone_number">Phone Number</label>
                                 <input type="tel" name="phone_number"
                                     class="form-control @error('phone_number') is-invalid @enderror"
-                                    value="{{ $doctor->phone_number }}" >
+                                    value="{{ $staff->phone_number }}" >
 
                                 @error('phone_number')
                                     <span class="invalid-feedback" role="alert">
@@ -108,9 +108,9 @@
                             </div>
                             <div class="col-lg-6">
                                 <label for="department">Specialisation</label>
-                                <select class="form-control @error('department') is-invalid @enderror" name="department" value="{{ $doctor->department}}">
+                                <select class="form-control @error('department') is-invalid @enderror" name="department" value="{{ $staff->department}}">
                                     @foreach(['GP', 'PCP', 'Physician', 'Nurse'] as $department)
-                                        <option value="{{ $department }}" @if($doctor->department == $department) selected @endif>{{ $department }}</option>
+                                        <option value="{{ $department }}" @if($staff->department == $department) selected @endif>{{ $department }}</option>
                                     @endforeach
                                 </select>
                                 @error('department')
@@ -124,7 +124,7 @@
                             <div class="col-lg-9">
                                 <label for="description">About</label>
                                 <textarea class="form-control @error('description') is-invalid @enderror" name="description"
-                                    rows="4">{{ $doctor->description }}</textarea>
+                                    rows="4">{{ $staff->description }}</textarea>
 
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
@@ -148,9 +148,9 @@
 
                                     <div class="p-1">
                                         <label for="role_id">Role</label>
-                                        <select class="form-control @error('role_id') is-invalid @enderror" name="role_id" value="{{ $doctor->role_id }}">
+                                        <select class="form-control @error('role_id') is-invalid @enderror" name="role_id" value="{{ $staff->role_id }}">
                                             @foreach ($roles as $role)
-                                                <option value="{{ $role->id }}" @if($doctor->role_id == $role->id) selected @endif>{{ $role->name }}</option>
+                                                <option value="{{ $role->id }}" @if($staff->role_id == $role->id) selected @endif>{{ $role->name }}</option>
                                             @endforeach
                                         </select>
 

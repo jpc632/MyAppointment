@@ -28,25 +28,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($doctors as $doctor)
+                            @foreach($staff as $member)
                                 <tr>
                                     <td>
                                         <div class="d-flex  justify-content-between">
                                             <div class="">
-                                                {{ $doctor->name }}
+                                                {{ $member->name }}
                                             </div>
                                             
                                         </div>
                                     </td>
-                                    <td>{{ $doctor->department }}</td>
-                                    <td>{{ $doctor->email }}</td>
-                                    <td>{{ $doctor->address }}</td>
-                                    <td>{{ $doctor->phone_number }}</td>
-                                    <td>{{ ucfirst($doctor->role->name) }}</td>
+                                    <td>{{ $member->department }}</td>
+                                    <td>{{ $member->email }}</td>
+                                    <td>{{ $member->address }}</td>
+                                    <td>{{ $member->phone_number }}</td>
+                                    <td>{{ ucfirst($member->role->name) }}</td>
                                     <td>
                                         <div class="table-actions d-flex justify-content-around">
-                                            <a href="{{ route('doctor.edit', $doctor->id) }}"><i class="material-icons">create</i></a>
-                                            <a href="{{ route('doctor.show', $doctor->id) }}"><i class="material-icons">delete</i></a>
+                                            <a href="{{ route('doctor.edit', $member->id) }}"><i class="material-icons">create</i></a>
+                                            <a href="{{ route('doctor.show', $member->id) }}"><i class="material-icons">delete</i></a>
                                         </div>
                                     </td>
                                 </tr>

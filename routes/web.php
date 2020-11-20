@@ -35,6 +35,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::resource('doctor', App\Http\Controllers\DoctorController::class);
 }); */
 
-Route::resource('doctor', App\Http\Controllers\DoctorController::class)->middleware('admin:view');
+Route::resource('doctor', App\Http\Controllers\StaffController::class)->middleware('admin:view');
 
 Route::resource('appointment', App\Http\Controllers\AppointmentController::class);

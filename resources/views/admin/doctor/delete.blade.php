@@ -4,13 +4,13 @@
     <div class="row d-flex justify-content-center">
         <div class="card" style="max-width: 350px">
             <div class="card-header">
-                <h3>Delete Doctor</h3>
+                <h3>Delete Staff</h3>
             </div>
             <div class="card-footer">
-                <form class="forms-sample " method="POST" action="{{ route('doctor.destroy', $doctor->id) }}" enctype="multipart/form-data">
+                <form class="forms-sample " method="POST" action="{{ route('doctor.destroy', $staff->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('DELETE')
-                    <h6>Do you want to permanantly delete {{ $doctor->name }}?</h6>
+                    <h6>Do you want to permanantly delete {{ $staff->name }}?</h6>
 
                     <div class="row d-flex justify-content-between p-2">
                         <div class="pl-3">

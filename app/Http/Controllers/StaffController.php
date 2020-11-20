@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Role;
 
-class DoctorController extends Controller
+class StaffController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors = User::where('role_id', '!=', '3')->get();
-        return view('admin.doctor.index', ['doctors' => $doctors]);
+        $staff = User::where('role_id', '!=', '3')->get();
+        return view('admin.doctor.index', ['staff' => $staff]);
     }
 
     /**
@@ -69,7 +69,7 @@ class DoctorController extends Controller
             'role_id' => $request->role_id
         ]);
         
-        return redirect()->back()->with('message', 'Doctor registered successfully!');
+        return redirect()->back()->with('message', 'Member registered successfully!');
     }
 
     /**
@@ -80,8 +80,8 @@ class DoctorController extends Controller
      */
     public function show($id)
     {
-        $doctor = User::find($id);
-        return view('admin.doctor.delete', ['doctor' => $doctor]);
+        $staff = User::find($id);
+        return view('admin.doctor.delete', ['staff' => $staff]);
     }
 
     /**
@@ -92,10 +92,10 @@ class DoctorController extends Controller
      */
     public function edit($id)
     {
-        $doctor = User::find($id);
+        $staff = User::find($id);
         $roles = Role::where('name', '!=', 'patient')->get();
         
-        return view('admin.doctor.edit', ['doctor' => $doctor, 'roles' => $roles]);
+        return view('admin.doctor.edit', ['staff' => $staff, 'roles' => $roles]);
     }
 
     /**
@@ -119,8 +119,8 @@ class DoctorController extends Controller
             'image' => ['image', 'max:2048']
         ]);
         
-        $doctor = User::find($id);
-        $image = $doctor->image;
+        $staff = User::find($id);
+        $image = $staff->image;
         
         if($request->hasFile('image'))
         {
@@ -129,7 +129,7 @@ class DoctorController extends Controller
             $image = $this->imgHandle($request);
         }
         
-        $doctor->update([
+        $staff->update([
             'name' => $request->name,
             'email' => $request->email,
             'gender' => $request->gender,
@@ -142,7 +142,7 @@ class DoctorController extends Controller
             'role_id' => $request->role_id
         ]);
         
-        return redirect()->route('doctor.index')->with('message', 'Doctor updated successfully!');
+        return redirect()->route('doctor.index')->with('message', 'Member updated successfully!');
     }
 
     private function imgHandle(Request $request)
@@ -170,13 +170,13 @@ class DoctorController extends Controller
         if(Auth::user()->id == $id)
             abort(401);
             
-        $doctor = User::find($id);
-        $image = $doctor->image;
+        $staff = User::find($id);
+        $image = $staff->image;
         
         if(file_exists(public_path('images/' . $image)) && $image != '')
             unlink(public_path('images/' . $image));   
-        $doctor->delete();
+        $staff->delete();
 
-        return redirect()->route('doctor.index')->with('message', 'Doctor deleted successfully!');
+        return redirect()->route('doctor.index')->with('message', 'Member deleted successfully!');
     }
 }
