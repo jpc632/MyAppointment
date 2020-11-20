@@ -1,156 +1,115 @@
-                <footer class="footer">
-                    <div class="w-100 clearfix">
-                        <span class="text-center text-sm-left d-md-inline-block">Copyright © 2018 ThemeKit v2.0. All Rights Reserved.</span>
-                        <span class="float-none float-sm-right mt-1 mt-sm-0 text-center">Crafted with <i class="fa fa-heart text-danger"></i> by <a href="http://lavalite.org/" class="text-dark" target="_blank">Lavalite</a></span>
-                    </div>
-                </footer>
-                
-            </div>
-        </div>
-        
-        
-        
 
-        <div class="modal fade apps-modal" id="appsModal" tabindex="-1" role="dialog" aria-labelledby="appsModalLabel" aria-hidden="true" data-backdrop="false">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ik ik-x-circle"></i></button>
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="quick-search">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-4 ml-auto mr-auto">
-                                    <div class="input-wrap">
-                                        <input type="text" id="quick-search" class="form-control" placeholder="Search..." />
-                                        <i class="ik ik-search"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-body d-flex align-items-center">
-                        <div class="container">
-                            <div class="apps-wrap">
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
-                                </div>
-                                <div class="app-item dropdown">
-                                    <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ik ik-command"></i><span>Ui</span></a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-mail"></i><span>Message</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-users"></i><span>Accounts</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-shopping-cart"></i><span>Sales</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-briefcase"></i><span>Purchase</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-server"></i><span>Menus</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-clipboard"></i><span>Pages</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-message-square"></i><span>Chats</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-map-pin"></i><span>Contacts</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-box"></i><span>Blocks</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-calendar"></i><span>Events</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-bell"></i><span>Notifications</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-pie-chart"></i><span>Reports</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-layers"></i><span>Tasks</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-edit"></i><span>Blogs</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-settings"></i><span>Settings</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-more-horizontal"></i><span>More</span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script>window.jQuery || document.write('<script src="theme/src/js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
-        <script src="{{asset('theme/plugins/popper.js/dist/umd/popper.min.js')}}"></script>
-        <script src="{{asset('theme/plugins/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-        <script src="{{asset('theme/plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js')}}"></script>
-        <script src="{{asset('theme/plugins/screenfull/dist/screenfull.js')}}"></script>
-        <script src="{{asset('theme/plugins/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-        <script src="{{asset('theme/plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-        <script src="{{asset('theme/plugins/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
-        <script src="{{asset('theme/plugins/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
-        <script src="{{asset('theme/plugins/jvectormap/jquery-jvectormap.min.js')}}"></script>
-        <script src="{{asset('theme/plugins/jvectormap/tests/assets/jquery-jvectormap-world-mill-en.js')}}"></script>
-        <script src="{{asset('theme/plugins/moment/moment.js')}}"></script>
-        <script src="{{asset('theme/plugins/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.min.js')}}"></script>
-        <script src="{{asset('theme/plugins/d3/dist/d3.min.js')}}"></script>
-        <script src="{{asset('theme/plugins/c3/c3.min.js')}}"></script>
-        <script src="{{asset('theme/js/tables.js')}}"></script>
-        <script src="{{asset('theme/js/widgets.js')}}"></script>
-        <script src="{{asset('theme/js/charts.js')}}"></script>
-        <script src="{{asset('theme/dist/js/theme.min.js')}}"></script>
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+
+<footer class="footer">
+    <div class="container-fluid">
+      <nav class="float-left">
+        <ul>
+          <li>
+            <a href="https://www.creative-tim.com">
+              Creative Tim
+            </a>
+          </li>
+          <li>
+            <a href="https://creative-tim.com/presentation">
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="http://blog.creative-tim.com">
+              Blog
+            </a>
+          </li>
+          <li>
+            <a href="https://www.creative-tim.com/license">
+              Licenses
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="copyright float-right">
+        &copy;
         <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='https://www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+          document.write(new Date().getFullYear())
         </script>
+      </div>
+    </div>
+  </footer>
+</div>
+</div>
+<div class="fixed-plugin">
 
-        {{-- Admin Date format --}}
-        <script type="text/javascript">
-            //format date
-            $(document).ready(function(){
-                $("#datepicker").datetimepicker({
-                    format: 'YYYY-MM-DD'
-                });
-            });
+</div>
+<!--   Core JS Files   -->
+<script src="{{asset('UI/assets/js/core/jquery.min.js')}}"></script>
+<script src="{{asset('UI/assets/js/core/popper.min.js')}}"></script>
+<script src="{{asset('UI/assets/js/core/bootstrap-material-design.min.js')}}"></script>
+<script src="{{asset('UI/assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
+<!-- Plugin for the momentJs  -->
+<script src="{{asset('UI/assets/js/plugins/moment.min.js')}}"></script>
+<!--  Plugin for Sweet Alert -->
+<script src="{{asset('UI/assets/js/plugins/sweetalert2.js')}}"></script>
+<!-- Forms Validations Plugin -->
+<script src="{{asset('UI/assets/js/plugins/jquery.validate.min.js')}}"></script>
+<!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+<script src="{{asset('UI/assets/js/plugins/jquery.bootstrap-wizard.js')}}"></script>
+<!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+<script src="{{asset('UI/assets/js/plugins/bootstrap-selectpicker.js')}}"></script>
+<!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+<script src="{{asset('UI/assets/js/plugins/bootstrap-datetimepicker.min.js')}}"></script>
+<!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
+<script src="{{asset('UI/assets/js/plugins/jquery.dataTables.min.js')}}"></script>
+<!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+<script src="{{asset('UI/assets/js/plugins/bootstrap-tagsinput.js')}}"></script>
+<!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+<script src="{{asset('UI/assets/js/plugins/jasny-bootstrap.min.js')}}"></script>
+<!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
+<script src="{{asset('UI/assets/js/plugins/fullcalendar.min.js')}}"></script>
+<!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+<script src="{{asset('UI/assets/js/plugins/jquery-jvectormap.js')}}"></script>
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="{{asset('UI/assets/js/plugins/nouislider.min.js')}}"></script>
+<!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+<!-- Library for adding dinamically elements -->
+<script src="{{asset('UI/assets/js/plugins/arrive.min.js')}}"></script>
+<!--  Google Maps Plugin    -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!-- Chartist JS -->
+<script src="{{asset('UI/assets/js/plugins/chartist.min.js')}}"></script>
+<!--  Notifications Plugin    -->
+<script src="{{asset('UI/assets/js/plugins/bootstrap-notify.js')}}"></script>
+<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="{{asset('UI/assets/js/material-dashboard.js?v=2.1.2')}}" type="text/javascript"></script>
 
-            //check all boxes
-            const checkAll = document.getElementById('checkAll');
-            
-            checkAll.addEventListener( 'change', function() {
-                const checkBoxes = document.querySelectorAll("#check");
+<script>
+$(document).ready(function() {
+  // Javascript method's body can be found in assets/js/demos.js
+  md.initDashboardPageCharts();
 
-                if(this.checked) {
-                    for(let i = 0; i < checkBoxes.length; i++){
-                        checkBoxes[i].classList.add('active');
-                    }
-                }else{
-                    for(let i = 0; i < checkBoxes.length; i++){
-                        checkBoxes[i].classList.remove('active');
-                    }
-                }
-            });
-        </script>
-    </body>
-</html>
+});
+</script>
+<script type="text/javascript">
+  //format date
+  $(document).ready(function(){
+      $("#datepicker").datetimepicker({
+          format: 'YYYY-MM-DD'
+      });
+  });
+
+  //check all boxes
+  const checkAll = document.getElementById('checkAll');
+  
+  checkAll.addEventListener( 'change', function() {
+      const checkBoxes = document.querySelectorAll("#check");
+
+      if(this.checked) {
+          for(let i = 0; i < checkBoxes.length; i++){
+              checkBoxes[i].classList.add('active');
+          }
+      }else{
+          for(let i = 0; i < checkBoxes.length; i++){
+              checkBoxes[i].classList.remove('active');
+          }
+      }
+  });
+</script>
