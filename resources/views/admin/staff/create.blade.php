@@ -11,17 +11,17 @@
             @endif
             <div class="card">
                 <div class="card-header card-header-primary" >
-                    <h4 class="card-title">Create</h4>
+                    <h4 class="card-title">Create User</h4>
                     <p class="card-category">Register a Doctor or Administrator</p>
                 </div>
                 <div class="card-body">
-                    <form class="forms-sample " method="POST" action="{{ route('doctor.store') }}" enctype="multipart/form-data">
+                    <form class="forms-sample " method="POST" action="{{ route('staff.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row p-2">
                             <div class="col-lg-6">
                                 <label for="name">Name</label>
                                 <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                                    value="{{ old('name') }}" required>
+                                    value="{{ old('name') }}" >
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -32,7 +32,7 @@
                             <div class="col-lg-6">
                                 <label for="email">E-mail</label>
                                 <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                                    value="{{ old('email') }}" required>
+                                    value="{{ old('email') }}" >
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -45,7 +45,7 @@
                             <div class="col-lg-6">
                                 <label for="password">Password</label>
                                 <input type="password" name="password"
-                                    class="form-control @error('password') is-invalid @enderror" required>
+                                    class="form-control @error('password') is-invalid @enderror" >
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -56,7 +56,7 @@
                             <div class="col-lg-6">
                                 <label for="gender">Gender</label>
                                 <select class="form-control @error('gender') is-invalid @enderror" name="gender"
-                                    value="{{ old('gender') }}" required>
+                                    value="{{ old('gender') }}" >
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
                                 </select>
@@ -73,7 +73,7 @@
                                 <label for="education">Degree</label>
                                 <input type="text" name="education"
                                     class="form-control @error('education') is-invalid @enderror"
-                                    value="{{ old('education') }}" required>
+                                    value="{{ old('education') }}" >
 
                                 @error('education')
                                     <span class="invalid-feedback" role="alert">
@@ -85,7 +85,7 @@
                                 <label for="address">Address</label>
                                 <input type="text" name="address"
                                     class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}"
-                                    required>
+                                    >
 
                                 @error('address')
                                     <span class="invalid-feedback" role="alert">
@@ -99,7 +99,7 @@
                                 <label for="phone_number">Phone Number</label>
                                 <input type="tel" name="phone_number"
                                     class="form-control @error('phone_number') is-invalid @enderror"
-                                    value="{{ old('phone_number') }}" required>
+                                    value="{{ old('phone_number') }}" >
 
                                 @error('phone_number')
                                     <span class="invalid-feedback" role="alert">
@@ -110,7 +110,7 @@
                             <div class="col-lg-6">
                                 <label for="department">Specialisation</label>
                                 <select class="form-control @error('department') is-invalid @enderror" name="department"
-                                    required>
+                                    >
                                     <option value="GP">General Practitioner</option>
                                     <option value="PCP">Primary Care Practitioner</option>
                                     <option value="Physician">Physician</option>
@@ -152,7 +152,7 @@
                                     <div class="p-1">
                                         <label for="role_id">Role</label>
                                         <select class="form-control @error('role_id') is-invalid @enderror" name="role_id"
-                                            required>
+                                            >
                                             @foreach ($roles as $role)
                                                 <option value="{{ $role->id }}">{{ $role->name }}</option>
                                             @endforeach
@@ -170,7 +170,9 @@
                         </div>
                         <div class="row d-flex justify-content-between p-2">
                             <div class="pl-3">
-                                <button class="btn btn-light mr-2">Cancel</button>
+                                <a href="{{ route('staff.index') }}">
+                                <button class="btn btn-light mr-2" type="button">Cancel</button>
+                                </a>
                             </div>
                             <div class="pr-3">
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>

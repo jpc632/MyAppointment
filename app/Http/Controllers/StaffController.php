@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use App\Models\User;
 use App\Models\Role;
 
@@ -17,8 +18,9 @@ class StaffController extends Controller
      */
     public function index()
     {
-        $staff = User::where('role_id', '!=', '3')->get();
-        return view('admin.doctor.index', ['staff' => $staff]);
+        $staff = User::where('role_id', '!=', '3')
+                        ->get();
+        return view('admin.staff.index', ['staff' => $staff]);
     }
 
     /**
@@ -28,8 +30,11 @@ class StaffController extends Controller
      */
     public function create()
     {
-        $roles = Role::where('name', '!=', 'patient')->orderBy('id', 'desc')->get();
-        return view('admin.doctor.create', ['roles' => $roles]);
+        $roles = Role::where('name', '!=', 'patient')
+                        ->orderBy('id', 'desc')
+                        ->get();
+        
+                        return view('admin.staff.create', ['roles' => $roles]);
     }
 
     /**
@@ -40,14 +45,15 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
-            'gender' => 'required',
-            'education' => 'required',
+            'gender' => Rule::requiredIf($request->role_id == '2'),
+            'education' => Rule::requiredIf($request->role_id == '2'),
             'address' => 'required',
-            'department' => 'required',
+            'department' => Rule::requiredIf($request->role_id == '2'),
             'phone_number' => ['required', 'numeric', 'min:8'],
             'role_id' => 'required',
             'image' => ['image', 'max:2048']
@@ -81,7 +87,7 @@ class StaffController extends Controller
     public function show($id)
     {
         $staff = User::find($id);
-        return view('admin.doctor.delete', ['staff' => $staff]);
+        return view('admin.staff.delete', ['staff' => $staff]);
     }
 
     /**
@@ -93,9 +99,10 @@ class StaffController extends Controller
     public function edit($id)
     {
         $staff = User::find($id);
-        $roles = Role::where('name', '!=', 'patient')->get();
+        $roles = Role::where('name', '!=', 'patient')
+                        ->get();
         
-        return view('admin.doctor.edit', ['staff' => $staff, 'roles' => $roles]);
+        return view('admin.staff.edit', ['staff' => $staff, 'roles' => $roles]);
     }
 
     /**
@@ -109,11 +116,11 @@ class StaffController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$id],
-            'gender' => 'required',
-            'education' => 'required',
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($id)],
+            'gender' => Rule::requiredIf($request->role_id == '2'),
+            'education' => Rule::requiredIf($request->role_id == '2'),
             'address' => 'required',
-            'department' => 'required',
+            'department' => Rule::requiredIf($request->role_id == '2'),
             'phone_number' => ['required', 'numeric', 'min:8'],
             'role_id' => 'required',
             'image' => ['image', 'max:2048']
@@ -142,7 +149,7 @@ class StaffController extends Controller
             'role_id' => $request->role_id
         ]);
         
-        return redirect()->route('doctor.index')->with('message', 'Member updated successfully!');
+        return redirect()->route('staff.index')->with('message', 'Member updated successfully!');
     }
 
     private function imgHandle(Request $request)
@@ -177,6 +184,6 @@ class StaffController extends Controller
             unlink(public_path('images/' . $image));   
         $staff->delete();
 
-        return redirect()->route('doctor.index')->with('message', 'Member deleted successfully!');
+        return redirect()->route('staff.index')->with('message', 'Member deleted successfully!');
     }
 }

@@ -101,14 +101,17 @@ $(document).ready(function() {
   
   checkAll.addEventListener( 'change', function() {
       const checkBoxes = document.querySelectorAll("#check");
+      const timesArr = document.querySelectorAll("#allTimes");
 
       if(this.checked) {
           for(let i = 0; i < checkBoxes.length; i++){
               checkBoxes[i].classList.add('active');
+              timesArr[i].checked = true;
           }
       }else{
           for(let i = 0; i < checkBoxes.length; i++){
               checkBoxes[i].classList.remove('active');
+              timesArr[i].checked = false;
           }
       }
   });

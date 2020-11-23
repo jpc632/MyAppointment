@@ -18,15 +18,15 @@
                 </a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link" href="{{ route('doctor.create') }}">
+                <a class="nav-link" href="{{ route('staff.create') }}">
                   <i class="material-icons">person</i>
-                  <p>Manage Users</p>
+                  <p>Create User</p>
                 </a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link" href="{{ route('doctor.index') }}">
+                <a class="nav-link" href="{{ route('staff.index') }}">
                   <i class="material-icons">content_paste</i>
-                  <p>View Users</p>
+                  <p>Staff Management</p>
                 </a>
               </li>
               <li class="nav-item ">

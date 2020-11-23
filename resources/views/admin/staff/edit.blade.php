@@ -13,7 +13,7 @@
                     <h3>Edit Staff</h3>
                 </div>
                 <div class="card-body">
-                    <form class="forms-sample " method="POST" action="{{ route('doctor.update', $staff->id) }}" enctype="multipart/form-data">
+                    <form class="forms-sample " method="POST" action="{{ route('staff.update', $staff->id) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row p-2">
@@ -166,7 +166,9 @@
                         </div>
                         <div class="row d-flex justify-content-between p-2">
                             <div class="pl-3">
-                                <button class="btn btn-light mr-2">Cancel</button>
+                                <a href="{{ route('staff.index') }}">
+                                <button class="btn btn-light mr-2" type="button">Cancel</button>
+                                </a>
                             </div>
                             <div class="pr-3">
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>

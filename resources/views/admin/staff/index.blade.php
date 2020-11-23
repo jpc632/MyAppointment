@@ -11,8 +11,8 @@
             @endif
             <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">View</h4>
-                    <p class="card-category">View all Doctors or Administrators</p>
+                    <h4 class="card-title">Staff</h4>
+                    <p class="card-category">Manage Doctors or Administrators</p>
                 </div>
                 <div class="card-body">
                     <table id="data_table" class="table container-fluid">
@@ -44,9 +44,17 @@
                                     <td>{{ $member->phone_number }}</td>
                                     <td>{{ ucfirst($member->role->name) }}</td>
                                     <td>
-                                        <div class="table-actions d-flex justify-content-around">
-                                            <a href="{{ route('doctor.edit', $member->id) }}"><i class="material-icons">create</i></a>
-                                            <a href="{{ route('doctor.show', $member->id) }}"><i class="material-icons">delete</i></a>
+                                        <div class="table-actions ">
+                                            <a href="{{ route('staff.edit', $member->id) }}" >
+                                                <button class="btn btn-primary btn-link btn-sm" rel="tooltip" data-original-title="Edit">
+                                                    <i class="material-icons">create</i>
+                                                </button>
+                                            </a>
+                                            <a href="{{ route('staff.show', $member->id) }}">
+                                                <button class="btn btn-primary btn-link btn-sm" rel="tooltip" data-original-title="Delete">
+                                                    <i class="material-icons">delete</i>
+                                                </button>
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>
