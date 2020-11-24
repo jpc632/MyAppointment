@@ -10,4 +10,9 @@ class Appointment extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function times()
+    {
+        return $this->hasMany('App\Models\Time');
+    }
 }

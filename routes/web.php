@@ -34,3 +34,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('staff', App\Http\Controllers\StaffController::class)->middleware('admin:view');
 
 Route::resource('appointment', App\Http\Controllers\AppointmentController::class);
+Route::post('appointment/check', [App\Http\Controllers\AppointmentController::class, 'check'])->name('appointment.check');

@@ -1,7 +1,6 @@
 @extends('admin.layouts.master')
 
 @section('content')
-
     <div class="container">
         @if (Session::has('message'))
                 <div class="alert alert-success">

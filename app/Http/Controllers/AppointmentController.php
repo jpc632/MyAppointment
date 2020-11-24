@@ -16,7 +16,21 @@ class AppointmentController extends Controller
      */
     public function index()
     {
+
         return view('admin.appointment.index');
+    }
+
+    //Display Availability based on date
+    public function check(Request $request)
+    {
+        $availability = Appointment::where('date', $request->date)->where('user_id', Auth::id())->first();
+        if(!$availability)
+            return redirect()->to('appointment')->with('message', 'No shifts for this date.');
+
+        $timesArr = Time::where('appointment_id', $availability->id)->get();
+        $date = $request->date;
+
+        return view('admin.appointment.index', ['timesArr' => $timesArr, 'date' => $date]);
     }
 
     /**
