@@ -19,10 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function () {
-    return view('test');
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
@@ -33,5 +29,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('staff', App\Http\Controllers\StaffController::class)->middleware('admin:view');
 
-Route::resource('appointment', App\Http\Controllers\AppointmentController::class);
-Route::post('appointment/check', [App\Http\Controllers\AppointmentController::class, 'check'])->name('appointment.check');
+Route::group(['middleware' => ['auth', 'doctor']], function(){
+    Route::resource('appointment', App\Http\Controllers\AppointmentController::class);
+    Route::post('appointment/check', [App\Http\Controllers\AppointmentController::class, 'check'])->name('appointment.check');
+    Route::post('appointment/delete', [App\Http\Controllers\AppointmentController::class, 'destroy'])->name('appointment.delete');
+});
+
+Route::get('/appointment/{user_id}/show/{date}', [App\Http\Controllers\AppointmentController::class, 'show']);

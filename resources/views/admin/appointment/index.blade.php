@@ -3,9 +3,9 @@
 @section('content')
     <div class="container">
         @if (Session::has('message'))
-                <div class="alert alert-danger">
-                    {{ Session::get('message') }}
-                </div>
+            <div class="alert alert-danger">
+                {{ Session::get('message') }}
+            </div>
         @endif
         <div class="card">
             <div class="card-header card-header-primary">
@@ -24,15 +24,19 @@
                     <button type="submit" class="btn btn-primary">View</button>
                 </div>
             </form>
-            <div class="card-header d-flex justify-content-between">
-                <h5>@if(isset($date)) Your Availability for:  {{ $date }} @endif</h5>
-            </div>
-            <div class="card-body">
-                <table class="table table-borderless">
-                    <tbody>
-                        <tr>
-                            <td class="d-flex btn-group-toggle flex-wrap" data-toggle="buttons">
-                                @if(isset($timesArr))
+            @if(Route::is('appointment.check'))
+                <div class="card-header d-flex justify-content-between">
+                    <h5>@if(isset($date)) Your Availability for:  {{ $date }} @endif</h5>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('appointment.delete') }}" method="POST">
+                        @csrf
+                        <table class="table table-borderless">
+                            <tbody>
+                                <input type="hidden" name="appointment_id" value="{{ $appointment_id }}">
+                                <input type="hidden" name="date" value="{{ $date }}">
+                                <tr>
+                                    <td class="d-flex btn-group-toggle flex-wrap" data-toggle="buttons">
                                     @foreach($timesArr as $times)
                                         <label class="btn btn-light active" id="check" style="width:33%">
                                             <input type="checkbox" id="allTimes" name="time[]"
@@ -40,12 +44,16 @@
                                                 {{ $times->time }}
                                         </label>
                                     @endforeach
-                                @endif
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            @endif
         </div>
     </div>
 @endsection

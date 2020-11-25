@@ -96,20 +96,41 @@ $(document).ready(function() {
       });
   });
 
-  //check all boxes
-  const checkAll = document.getElementById('checkAll');
+  //check Morning boxes
+  const checkMorn = document.getElementById('checkMorn');
   
-  checkAll.addEventListener( 'change', function() {
+  checkMorn.addEventListener( 'change', function() {
       const checkBoxes = document.querySelectorAll("#check");
       const timesArr = document.querySelectorAll("#allTimes");
-
+      const end = Math.round(checkBoxes.length/2);
       if(this.checked) {
-          for(let i = 0; i < checkBoxes.length; i++){
+          for(let i = 0; i < end; i++){
               checkBoxes[i].classList.add('active');
               timesArr[i].checked = true;
           }
       }else{
-          for(let i = 0; i < checkBoxes.length; i++){
+          for(let i = 0; i < end; i++){
+              checkBoxes[i].classList.remove('active');
+              timesArr[i].checked = false;
+          }
+      }
+  });
+
+  //check Afternoon boxes
+  const checkArvo = document.getElementById('checkArvo');
+
+  checkArvo.addEventListener( 'change', function() {
+      const checkBoxes = document.querySelectorAll("#check");
+      const timesArr = document.querySelectorAll("#allTimes");
+      const start = Math.round(checkBoxes.length/2);
+      
+      if(this.checked) {
+          for(let i = start; i < checkBoxes.length; i++){
+              checkBoxes[i].classList.add('active');
+              timesArr[i].checked = true;
+          }
+      }else{
+          for(let i = start; i < checkBoxes.length; i++){
               checkBoxes[i].classList.remove('active');
               timesArr[i].checked = false;
           }

@@ -16,8 +16,8 @@
             @csrf
             <div class="card">
                 <div class="card-header card-header-primary" >
-                    <h4 class="card-title">Create Appointment</h4>
-                    <p class="card-category">Register a Doctor or Administrator</p>
+                    <h4 class="card-title">Availability</h4>
+                    <p class="card-category">Register your shift times</p>
                 </div>
                 <div class="card-header">
                     <h5>Date</h5>
@@ -32,11 +32,17 @@
                 </div>
                 <div class="card-header d-flex justify-content-between">
                     <h5>Time</h5>
-                    <div >
-                        <div class="btn btn-secondary">
-                            <label for="checkAll" style="font-size: 120%">
-                            <input type="checkbox" id="checkAll" name="checkAll" class="form-input p-2" >
-                            Check All
+                    <div>
+                        <div class="btn btn-secondary btn-sm pb-0">
+                            <label for="checkMorn">
+                            <input type="checkbox" id="checkMorn" name="checkMorn" class="form-input p-2" >
+                            Morning
+                            </label>
+                        </div>
+                        <div class="btn btn-secondary btn-sm pb-0">
+                            <label for="checkArvo">
+                            <input type="checkbox" id="checkArvo" name="checkArvo" class="form-input p-2" >
+                            Afternoon
                             </label>
                         </div>
                     </div>

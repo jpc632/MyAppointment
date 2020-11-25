@@ -17,18 +17,34 @@
                   <p>Dashboard</p>
                 </a>
               </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="{{ route('staff.create') }}">
-                  <i class="material-icons">person</i>
-                  <p>Create User</p>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" href="{{ route('staff.index') }}">
-                  <i class="material-icons">content_paste</i>
-                  <p>Staff Management</p>
-                </a>
-              </li>
+              @if(Auth::user()->role->name == 'admin')
+                <li class="nav-item ">
+                  <a class="nav-link" href="{{ route('staff.create') }}">
+                    <i class="material-icons">person</i>
+                    <p>Create User</p>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="{{ route('staff.index') }}">
+                    <i class="material-icons">content_paste</i>
+                    <p>Staff Management</p>
+                  </a>
+                </li>
+              @endif
+              @if(Auth::user()->role->name == 'doctor')
+                <li class="nav-item ">
+                  <a class="nav-link" href="{{ route('appointment.create') }}">
+                    <i class="material-icons">person</i>
+                    <p>Availability</p>
+                  </a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="{{ route('appointment.index') }}">
+                    <i class="material-icons">content_paste</i>
+                    <p>Shift Management</p>
+                  </a>
+                </li>
+              @endif
               <li class="nav-item ">
                 <a class="nav-link" href="./typography.html">
                   <i class="material-icons">library_books</i>

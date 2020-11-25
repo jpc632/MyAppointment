@@ -30,7 +30,7 @@ class AppointmentController extends Controller
         $timesArr = Time::where('appointment_id', $availability->id)->get();
         $date = $request->date;
 
-        return view('admin.appointment.index', ['timesArr' => $timesArr, 'date' => $date]);
+        return view('admin.appointment.index', ['timesArr' => $timesArr, 'date' => $date, 'appointment_id' => $availability->id]);
     }
 
     /**
@@ -80,9 +80,9 @@ class AppointmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($user_id, $date)
     {
-        //
+        
     }
 
     /**
@@ -114,8 +114,14 @@ class AppointmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $appointment_id = $request->appointment_id;
+        Time::where('appointment_id', $appointment_id)
+                ->delete();
+        Appointment::where('id', $appointment_id)
+                ->delete();
+
+        return redirect()->route('appointment.index')->with('message', 'Record deleted successfully!');
     }
 }
