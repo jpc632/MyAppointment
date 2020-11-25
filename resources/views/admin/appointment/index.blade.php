@@ -9,8 +9,8 @@
         @endif
         <div class="card">
             <div class="card-header card-header-primary">
-                <h4 class="card-title">View Appointments</h4>
-                <p class="card-category">Select date to view appointments</p>
+                <h4 class="card-title">Shift Times</h4>
+                <p class="card-category">View shift hours for selected dates</p>
             </div>
             <div class="card-header">
                 <h5>Date</h5>

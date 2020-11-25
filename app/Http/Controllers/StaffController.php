@@ -64,7 +64,7 @@ class StaffController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password), //TODO: gen random temp password to change on email request
+            'password' => Hash::make($request->password), //FIXME: gen random temp password to change on email request
             'gender' => $request->gender,
             'image' => $image,
             'education' => $request->education,

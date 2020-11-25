@@ -27,12 +27,21 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('staff', App\Http\Controllers\StaffController::class)->middleware('admin:view');
+//admin CRUD
+Route::resource('/staff', App\Http\Controllers\StaffController::class)->middleware('admin:view');
 
-Route::group(['middleware' => ['auth', 'doctor']], function(){
-    Route::resource('appointment', App\Http\Controllers\AppointmentController::class);
-    Route::post('appointment/check', [App\Http\Controllers\AppointmentController::class, 'check'])->name('appointment.check');
-    Route::post('appointment/delete', [App\Http\Controllers\AppointmentController::class, 'destroy'])->name('appointment.delete');
+//Doctor CRUD
+Route::group(['middleware' => ['auth', 'doctor']], function () {
+    //Create availability
+    Route::post('/appointment', [App\Http\Controllers\AppointmentController::class, 'store'])->name('appointment.store');
+    Route::get('/appointment/create', [App\Http\Controllers\AppointmentController::class, 'create'])->name('appointment.create');
+
+    //View and delete availability
+    Route::get('/appointment', [App\Http\Controllers\AppointmentController::class, 'index'])->name('appointment.index');
+    Route::post('/appointment/check', [App\Http\Controllers\AppointmentController::class, 'check'])->name('appointment.check');
+    Route::post('/appointment/delete', [App\Http\Controllers\AppointmentController::class, 'destroy'])->name('appointment.delete');
+
+    //view booked appointments
+    Route::post('/appointment/{user_id}/bookings', [App\Http\Controllers\AppointmentController::class, 'show'])->name('appointment.show');
+    Route::get('/appointment/{user_id}/bookings', [App\Http\Controllers\AppointmentController::class, 'view'])->name('appointment.view');
 });
-
-Route::get('/appointment/{user_id}/show/{date}', [App\Http\Controllers\AppointmentController::class, 'show']);

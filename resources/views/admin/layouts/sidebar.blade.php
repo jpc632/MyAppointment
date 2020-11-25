@@ -33,10 +33,10 @@
               @endif
               @if(Auth::user()->role->name == 'doctor')
                 <li class="nav-item ">
-                  <a class="nav-link" href="{{ route('appointment.create') }}">
-                    <i class="material-icons">person</i>
-                    <p>Availability</p>
-                  </a>
+                <a class="nav-link" href="{{ route('appointment.view', Auth::user()->id) }}">
+                  <i class="material-icons">library_books</i>
+                  <p>Appointments</p>
+                </a>
                 </li>
                 <li class="nav-item ">
                   <a class="nav-link" href="{{ route('appointment.index') }}">
@@ -44,13 +44,14 @@
                     <p>Shift Management</p>
                   </a>
                 </li>
+                <li class="nav-item ">
+                  <a class="nav-link" href="{{ route('appointment.create') }}">
+                    <i class="material-icons">person</i>
+                    <p>Availability</p>
+                  </a>
+                </li>
               @endif
-              <li class="nav-item ">
-                <a class="nav-link" href="./typography.html">
-                  <i class="material-icons">library_books</i>
-                  <p>Typography</p>
-                </a>
-              </li>
+              
               <li class="nav-item ">
                 <a class="nav-link" href="./icons.html">
                   <i class="material-icons">bubble_chart</i>
