@@ -33,6 +33,22 @@ class AppointmentController extends Controller
     }
 
     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request)
+    {
+        $appointment_id = $request->appointment_id;
+        Time::where('appointment_id', $appointment_id)
+            ->delete();
+        Appointment::where('id', $appointment_id)
+            ->delete();
+
+        return redirect()->route('appointment.index')->with('message', 'Record deleted successfully!');
+    }
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -119,22 +135,5 @@ class AppointmentController extends Controller
     public function update(Request $request, $id)
     {
         //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request)
-    {
-        $appointment_id = $request->appointment_id;
-        Time::where('appointment_id', $appointment_id)
-            ->delete();
-        Appointment::where('id', $appointment_id)
-            ->delete();
-
-        return redirect()->route('appointment.index')->with('message', 'Record deleted successfully!');
     }
 }
