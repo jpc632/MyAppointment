@@ -109,6 +109,8 @@ class AppointmentController extends Controller
     {
         $date = date('Y-m-d');
         $appointments = Appointment::where('user_id', Auth::user()->id)->where('date', $date)->first();
+        if (!$appointments)
+            return redirect()->back()->with('message', 'No shifts for this date.');
         $timesArr = Time::where('appointment_id', $appointments->id)->get();
 
         return view('admin.appointment.view', ['timesArr' => $timesArr, 'date' => $date, 'appointment_id' => $appointments->id]);

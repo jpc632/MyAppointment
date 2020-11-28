@@ -23,6 +23,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
+Route::get('/patient', function(){
+    return view('patient.doctors');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
