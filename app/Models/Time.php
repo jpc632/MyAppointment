@@ -13,6 +13,11 @@ class Time extends Model
 
     public function appointment()
     {
-        return $this->belongsTo('App\Models\Appointment');
+        return $this->belongsTo('App\Models\Appointment', 'appointment_id', 'id');
+    }
+
+    public function patient()
+    {
+        return $this->belongsTo('App\Models\User', 'patient_id', 'id');
     }
 }

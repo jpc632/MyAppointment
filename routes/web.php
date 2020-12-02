@@ -23,9 +23,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
-Route::get('/patient', function(){
-    return view('patient.doctors');
-});
+Route::get('/index', [App\Http\Controllers\PatientController::class, 'index']);
+Route::get('/book', [App\Http\Controllers\PatientController::class, 'book']);
+Route::post('/book', [App\Http\Controllers\PatientController::class, 'viewDoctors'])->name('patient.viewDoctors');
+Route::put('/book', [App\Http\Controllers\PatientController::class, 'update'])->name('patient.update');
+
 
 Auth::routes();
 

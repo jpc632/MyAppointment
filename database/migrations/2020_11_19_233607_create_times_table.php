@@ -17,7 +17,7 @@ class CreateTimesTable extends Migration
             $table->id();
             $table->integer('appointment_id');
             $table->string('time');
-            $table->integer('status')->default(0);
+            $table->integer('patient_id')->nullable();
             $table->timestamps();
         });
     }

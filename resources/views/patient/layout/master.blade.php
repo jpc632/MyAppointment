@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height:100vh">
 
 <head>
     <meta charset="utf-8" />
@@ -18,8 +18,9 @@
     <link href="{{ asset('UI/assets/css/material-dashboard.css?v=2.1.2') }}" rel="stylesheet" />
 </head>
 
-<body style="height:100vh" >
+<body style="d-flex align-items-center height:100vh" >
     @include('patient.layout.navbar')
+    
     @yield('content')
     @include('patient.layout.footer')
 </body>

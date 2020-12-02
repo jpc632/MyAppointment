@@ -15,4 +15,9 @@ class Appointment extends Model
     {
         return $this->hasMany('App\Models\Time');
     }
+
+    public function users()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

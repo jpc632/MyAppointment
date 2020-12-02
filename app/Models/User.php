@@ -53,4 +53,19 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\Role', 'id', 'role_id');
     }
+
+    public function time()
+    {
+        return $this->hasMany('App\Models\Time', 'patient_id', 'id');
+    }
+
+    public function times()
+    {
+        return $this->hasManyThrough('App\Models\Time', 'App\Models\Appointment', 'user_id', 'appointment_id');
+    }
+
+    public function appointment()
+    {
+        return $this->hasMany('App\Models\Appointment', 'user_id', 'id');
+    }
 }

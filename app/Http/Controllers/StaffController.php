@@ -34,7 +34,7 @@ class StaffController extends Controller
                         ->orderBy('id', 'desc')
                         ->get();
         
-                        return view('admin.staff.create', ['roles' => $roles]);
+        return view('admin.staff.create', ['roles' => $roles]);
     }
 
     /**
