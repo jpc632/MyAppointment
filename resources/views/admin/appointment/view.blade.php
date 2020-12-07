@@ -15,7 +15,7 @@
             <div class="card-header">
                 <h5>Date</h5>
             </div>
-            <form class="forms-sample" method="POST" action="{{ route('appointment.show', Auth::user()->id) }}">
+            <form class="forms-sample" method="POST" action="{{ route('appointment.show') }}">
                 @csrf
                 <div class="card-body">
                     <input type="date" class="form-control" id="name" name="date"  >
@@ -24,26 +24,28 @@
                     <button type="submit" class="btn btn-primary">View</button>
                 </div>
             </form>
-                <div class="card-header d-flex justify-content-between">
-                    <h5>@if(isset($date)) Your Appointments for:  {{ $date }} @endif</h5>
-                </div>
-                <div class="card-body">
-                    <table class="table table-borderless">
-                        <tbody>
-                            <tr>
-                                <td class="d-flex btn-group-toggle flex-wrap" data-toggle="buttons">
-                                @foreach($timesArr as $times)
-                                    <label class="btn btn-light active" id="check" style="width:33%">
-                                        <input type="checkbox" id="allTimes" name="time[]"
-                                            value="{{ $times->time }}" disabled checked >&nbsp;
-                                            {{ $times->time }}
-                                    </label>
-                                @endforeach
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                @if(Route::is('appointment.show'))
+                    <div class="card-header d-flex justify-content-between">
+                        <h5>@if(isset($date)) Your Appointments for:  {{ $date }} @endif</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td class="d-flex btn-group-toggle flex-wrap" data-toggle="buttons">
+                                    @foreach($timesArr as $times)
+                                        <label class="btn btn-light active" id="check" style="width:33%">
+                                            <input type="checkbox" id="allTimes" name="time[]"
+                                                value="{{ $times->time }}" disabled checked >&nbsp;
+                                                {{ $times->time }}
+                                        </label>
+                                    @endforeach
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                @endif
         </div>
     </div>
 @endsection

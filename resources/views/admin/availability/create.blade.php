@@ -12,7 +12,7 @@
                     {{ $error }}
                 </div>
         @endforeach
-        <form class="forms-sample" method="POST" action="{{ route('appointment.store') }}">
+        <form class="forms-sample" method="POST" action="{{ route('availability.store') }}">
             @csrf
             <div class="card">
                 <div class="card-header card-header-primary" >

@@ -14,12 +14,12 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    /* public function index()
     {
         return view('admin.appointment.index');
-    }
+    } */
 
-    //Display Availability based on date
+    /* //Display Availability based on date
     public function check(Request $request)
     {
         $availability = Appointment::where('date', $request->date)->where('user_id', Auth::id())->first();
@@ -34,12 +34,6 @@ class AppointmentController extends Controller
                                                 'appointment_id' => $availability->id]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Request $request)
     {
         $appointment_id = $request->appointment_id;
@@ -49,23 +43,18 @@ class AppointmentController extends Controller
             ->delete();
 
         return redirect()->route('appointment.index')->with('message', 'Record deleted successfully!');
-    }
+    } */
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+/*     public function create()
     {
         return view('admin.appointment.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $dateToday = date('Y-m-d');
@@ -88,7 +77,7 @@ class AppointmentController extends Controller
         }
 
         return redirect()->back()->with('message', 'Shift create for' . $request->date);
-    }
+    } */
 
     /**
      * Display the specified resource.
@@ -106,7 +95,7 @@ class AppointmentController extends Controller
 
         $timesArr = Time::where('appointment_id', $appointments->id)
                             ->where('patient_id', '!=', NULL)
-                            ->get(); //FIXME: where status = 1
+                            ->get(); 
 
         return view('admin.appointment.view', ['timesArr' => $timesArr, 
                                                 'date' => $request->date, 
@@ -115,18 +104,7 @@ class AppointmentController extends Controller
 
     public function view()
     {
-        $date = date('Y-m-d');
-        $appointments = Appointment::where('user_id', Auth::user()->id)
-                                        ->where('date', $date)
-                                        ->first();
-        if (!$appointments)
-            return redirect()->back()->with('message', 'No shifts for this date.');
-        $timesArr = Time::where('appointment_id', $appointments->id)
-                            ->get();
-
-        return view('admin.appointment.view', ['timesArr' => $timesArr, 
-                                                'date' => $date, 
-                                                'appointment_id' => $appointments->id]);
+        return view('admin.appointment.view');
     }
 
     /**

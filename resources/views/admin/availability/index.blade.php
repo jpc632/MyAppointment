@@ -15,7 +15,7 @@
             <div class="card-header">
                 <h5>Date</h5>
             </div>
-            <form class="forms-sample" method="POST" action="{{ route('appointment.check') }}">
+            <form class="forms-sample" method="POST" action="{{ route('availability.show',  Auth::user()->id) }}">
                 @csrf
                 <div class="card-body">
                     <input type="date" class="form-control" id="name" name="date"  >
@@ -24,12 +24,12 @@
                     <button type="submit" class="btn btn-primary">View</button>
                 </div>
             </form>
-            @if(Route::is('appointment.check'))
+            @if(Route::is('availability.check'))
                 <div class="card-header d-flex justify-content-between">
                     <h5>@if(isset($date)) Your Availability for:  {{ $date }} @endif</h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('appointment.delete') }}" method="POST">
+                    <form action="{{ route('availability.delete') }}" method="POST">
                         @csrf
                         <table class="table table-borderless">
                             <tbody>
