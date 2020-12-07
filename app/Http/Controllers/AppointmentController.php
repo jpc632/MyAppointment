@@ -29,7 +29,9 @@ class AppointmentController extends Controller
         $timesArr = Time::where('appointment_id', $availability->id)->get();
         $date = $request->date;
 
-        return view('admin.appointment.index', ['timesArr' => $timesArr, 'date' => $date, 'appointment_id' => $availability->id]);
+        return view('admin.appointment.index', ['timesArr' => $timesArr, 
+                                                'date' => $date, 
+                                                'appointment_id' => $availability->id]);
     }
 
     /**
@@ -96,24 +98,35 @@ class AppointmentController extends Controller
      */
     public function show(Request $request)
     {
-        $appointments = Appointment::where('user_id', Auth::user()->id)->where('date', $request->date)->first();
+        $appointments = Appointment::where('user_id', Auth::user()->id)
+                                        ->where('date', $request->date)
+                                        ->first();
         if (!$appointments)
             return redirect()->back()->with('message', 'No shifts for this date.');
 
-        $timesArr = Time::where('appointment_id', $appointments->id)->get(); //FIXME: where status = 1
+        $timesArr = Time::where('appointment_id', $appointments->id)
+                            ->where('patient_id', '!=', NULL)
+                            ->get(); //FIXME: where status = 1
 
-        return view('admin.appointment.view', ['timesArr' => $timesArr, 'date' => $request->date, 'appointment_id' => $appointments->id]);
+        return view('admin.appointment.view', ['timesArr' => $timesArr, 
+                                                'date' => $request->date, 
+                                                'appointment_id' => $appointments->id]);
     }
 
     public function view()
     {
         $date = date('Y-m-d');
-        $appointments = Appointment::where('user_id', Auth::user()->id)->where('date', $date)->first();
+        $appointments = Appointment::where('user_id', Auth::user()->id)
+                                        ->where('date', $date)
+                                        ->first();
         if (!$appointments)
             return redirect()->back()->with('message', 'No shifts for this date.');
-        $timesArr = Time::where('appointment_id', $appointments->id)->get();
+        $timesArr = Time::where('appointment_id', $appointments->id)
+                            ->get();
 
-        return view('admin.appointment.view', ['timesArr' => $timesArr, 'date' => $date, 'appointment_id' => $appointments->id]);
+        return view('admin.appointment.view', ['timesArr' => $timesArr, 
+                                                'date' => $date, 
+                                                'appointment_id' => $appointments->id]);
     }
 
     /**
