@@ -16,8 +16,9 @@ Route::get('/dashboard', function () {
 
 //Patient CRUD
 Route::get('/index', [App\Http\Controllers\PatientController::class, 'index']);
+Route::post('/book/doctors', [App\Http\Controllers\PatientController::class, 'viewDoctors'])->name('patient.viewDoctors');
+Route::post('/book/show', [App\Http\Controllers\PatientController::class, 'show'])->name('patient.show');
 Route::get('/book', [App\Http\Controllers\PatientController::class, 'book']);
-Route::post('/book', [App\Http\Controllers\PatientController::class, 'viewDoctors'])->name('patient.viewDoctors');
 Route::put('/book', [App\Http\Controllers\PatientController::class, 'update'])->name('patient.update');
 
 Auth::routes();

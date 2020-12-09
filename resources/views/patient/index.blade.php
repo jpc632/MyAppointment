@@ -17,30 +17,22 @@
                 <div class="card-body">
                     <table id="data_table" class="table container-fluid">
                         <thead>
-                            <tr class="d-flex ">
+                            <tr class="">
                                 <th>Doctor</th>
+                                <th>Date</th>
                                 <th>Time</th>
                                 <th>Cancel</th>
-                              
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($timesArr as $time)
                                 <tr class="">
-                                    <td>
-                                        <div class="d-flex  ">
-                                            <div class="">
-                                                {{ $time->doctor_name }}
-                                            </div>
-                                            
-                                        </div>
-                                    </td>
-                                    <td>{{ $time->time }}</td>
-
+                                    <td>{{ $time['doctor_name'] }}</td>
+                                    <td>{{ $time['date'] }}</td>
+                                    <td>{{ $time['time'] }}</td>
                                     <td>
                                         <div class="table-actions ">
-
-                                            <a href="{{ route('staff.show', $time->id) }}">
+                                            <a href="{{ route('staff.show', $time['id']) }}">
                                                 <button class="btn btn-primary btn-link btn-sm" rel="tooltip" data-original-title="Delete">
                                                     <i class="material-icons">delete</i>
                                                 </button>
@@ -48,7 +40,6 @@
                                         </div>
                                     </td>
                                 </tr>
-                                
                             @endforeach
                         </tbody>
                     </table>
