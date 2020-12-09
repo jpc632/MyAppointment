@@ -8,6 +8,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
@@ -19,8 +21,6 @@ Route::post('/book', [App\Http\Controllers\PatientController::class, 'viewDoctor
 Route::put('/book', [App\Http\Controllers\PatientController::class, 'update'])->name('patient.update');
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //admin CRUD
 Route::resource('/staff', App\Http\Controllers\StaffController::class)->middleware('admin:view');
