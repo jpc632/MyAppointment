@@ -14,35 +14,44 @@ class PatientController extends Controller
     //View patients bookings
     public function index()
     {
-        $timesArr = Time::where('patient_id', Auth::user()->id)->get();
-        $newArr = array();
-        $cnt = 0;
-        foreach($timesArr as $time)
-        {
-            $isValid = Appointment::where('id', $time->appointment_id)->where('date', '>=', date('Y-m-d'))->first();
-            if($isValid)
-            {
-                //select doctor name from users based on appointment_id 
-                $doctor_name = User::where('id', $time->appointment_id)
-                    ->first()
-                    ->name;
-                //append to new arr
-                $newArr[$cnt]['doctor_name'] = $doctor_name;
-                $newArr[$cnt]['id'] = $time->id;
-                $newArr[$cnt]['time'] = $time->time;
-                $newArr[$cnt]['date'] = $isValid->date;
-                $cnt++;
-            }
-            
-        }
-        //dd($newArr);
-        return view('patient.index', ['timesArr' => $newArr]);
+        $timesArr = DB::table('appointments')
+                        ->join('times', function ($join) {
+                            $join->on('appointments.id', '=', 'times.appointment_id')
+                            ->where('appointments.date', '>=', date('Y-m-d'))
+                            ->where('times.patient_id', '=', Auth::user()->id);
+                        })
+                        ->join('users', function($join){
+                            $join->on('users.id', '=', 'appointments.user_id');
+                        })
+                        ->get();
+        
+        
+        return view('patient.index', ['timesArr' => $timesArr]);
     }
 
     public function book()
     {   
         return view('patient.book');
     }
+
+    private function unique_multidim_array($array)
+    {
+        $temp_array = array();
+        $i = 0;
+        $key_array = array();
+
+        foreach ($array as $val) {
+            if (!in_array(
+                $val->time,
+                $key_array
+            )) {
+                $key_array[$i] = $val->time;
+                $temp_array[$i] = $val;
+            }
+            $i++;
+        }
+        return $temp_array;
+    } 
 
     public function show(Request $request)
     {
@@ -52,14 +61,16 @@ class PatientController extends Controller
         ]);
         //Query available times for appointment based on the date chosen
         $date = $request->date;
-        $timesArr = DB::table('appointments')
-                        ->join('times', function($join) use ($date){
+        $timesArr = DB::table('times')
+                        ->join('appointments', function($join) use ($date){
                             $join->on('appointments.id', '=', 'times.appointment_id')
                                 ->where('appointments.date', '=', $date)
-                                ->distinct();
+                                ->where('times.patient_id', '=', NULL);
                         })
                         ->get();
-
+        
+        $timesArr = $this->unique_multidim_array($timesArr);
+        
         return view('patient.book', ['timesArr' => $timesArr, 'dateChosen' => $date]);
     }
 
@@ -100,7 +111,6 @@ class PatientController extends Controller
 
     public function update(Request $request)
     {
-        dd($request->all());
         $app_id = Appointment::where('date', $request->date)
                                 ->where('user_id', $request->doctor)
                                 ->first()
@@ -114,8 +124,6 @@ class PatientController extends Controller
             'patient_id' => Auth::user()->id
         ]);
 
-        return redirect()
-                ->back()
-                ->with('message', 'Appointment booked successfully!');
+        return redirect()->route('patient.book')->with('message', 'Appointment booked successfully!');
     }
 }

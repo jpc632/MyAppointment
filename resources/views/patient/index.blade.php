@@ -19,20 +19,24 @@
                         <thead>
                             <tr class="">
                                 <th>Doctor</th>
+                                <th>Gender</th>
                                 <th>Date</th>
                                 <th>Time</th>
+                                <th>Department</th>
                                 <th>Cancel</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($timesArr as $time)
                                 <tr class="">
-                                    <td>{{ $time['doctor_name'] }}</td>
-                                    <td>{{ $time['date'] }}</td>
-                                    <td>{{ $time['time'] }}</td>
+                                    <td>{{ $time->name }}</td>
+                                    <td>{{ $time->gender }}</td>
+                                    <td>{{ $time->date }}</td>
+                                    <td>{{ $time->time }}</td>
+                                    <td>{{ $time->department }}</td>
                                     <td>
                                         <div class="table-actions ">
-                                            <a href="{{ route('staff.show', $time['id']) }}">
+                                            <a href="{{ route('staff.show', $time->id) }}">
                                                 <button class="btn btn-primary btn-link btn-sm" rel="tooltip" data-original-title="Delete">
                                                     <i class="material-icons">delete</i>
                                                 </button>

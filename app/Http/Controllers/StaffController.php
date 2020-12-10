@@ -23,11 +23,6 @@ class StaffController extends Controller
         return view('admin.staff.index', ['staff' => $staff]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $roles = Role::where('name', '!=', 'patient')
