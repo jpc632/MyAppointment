@@ -42,7 +42,7 @@ class AvailabilityController extends Controller
 
         return redirect()->back()->with('message', 'Shift create for' . $request->date);
     }
-
+    //FIXME: broken
     //Display Availability based on date
     public function show(Request $request, $id)
     {

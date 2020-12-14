@@ -24,7 +24,7 @@
                     <button type="submit" class="btn btn-primary">View</button>
                 </div>
             </form>
-            @if(Route::is('availability.check'))
+            @if(Route::is('availability.show'))
                 <div class="card-header d-flex justify-content-between">
                     <h5>@if(isset($date)) Your Availability for:  {{ $date }} @endif</h5>
                 </div>

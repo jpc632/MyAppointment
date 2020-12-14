@@ -24,28 +24,22 @@
                     <button type="submit" class="btn btn-primary">View</button>
                 </div>
             </form>
-                @if(Route::is('appointment.show'))
-                    <div class="card-header d-flex justify-content-between">
-                        <h5>@if(isset($date)) Your Appointments for:  {{ $date }} @endif</h5>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-borderless">
-                            <tbody>
-                                <tr>
-                                    <td class="d-flex btn-group-toggle flex-wrap" data-toggle="buttons">
-                                    @foreach($timesArr as $times)
-                                        <label class="btn btn-light active" id="check" style="width:33%">
-                                            <input type="checkbox" id="allTimes" name="time[]"
-                                                value="{{ $times->time }}" disabled checked >&nbsp;
-                                                {{ $times->time }}
-                                        </label>
-                                    @endforeach
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                @endif
+            @if(Route::is('appointment.show'))
+                <div class="card-header d-flex justify-content-between">
+                    <h5>@if(isset($date)) Your Appointments for:  {{ $date }} @endif</h5>
+                </div>
+                <div class="card-body d-flex flex-wrap justify-content-around">
+                    @foreach($timesArr as $times)
+                        <div class="card text-dark bg-light" style="width:45%">
+                            <p class="border-bottom border-top p-3 ">
+                                <strong class="d-block text-gray-dark">Time: {{ $times->time }}</strong>
+                                <p class="pl-3">Patient: {{ $times->name }} </p>
+                                <p class="pl-3">Email: {{ $times->email }} </p>
+                            </p>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         </div>
     </div>
 @endsection
