@@ -52,22 +52,26 @@
                 </form>
             @endif
             
-            @if(isset($doc_info_arr))
+            @if(isset($availableDoctors))
                 <div class="card-body">
-                    <form class="forms-sample" method="POST" action="{{ route('patient.update') }}">
+                    @foreach($availableDoctors as $doctor)
+                        <form class="forms-sample" method="POST" action="{{ route('patient.update') }}">
                         @csrf
                         @method('PUT')
-                        @foreach($doc_info_arr as $doc_id => $doc_name)
-                            <label onclick="registerChecked()" class="btn btn-light" id="check" style="width:33%">
-                                <input type="checkbox" name="doctor" 
-                                    value="{{ $doc_id }}">
-                                    {{ $doc_name}}
-                            </label>
-                        @endforeach
-                        <input type="hidden" value="{{ $timeChosen }}" name="time">
-                        <input type="hidden" value="{{ $dateChosen }}" name="date">
-                        <input type="submit" class="btn btn-primary"  value="submit">
-                    </form>
+                            <div class="card text-dark bg-light">
+                                <p class="border-bottom border-top p-3">
+                                    <input type="hidden" name="id" value="{{ $doctor->id }}">
+                                    <strong class="d-block text-gray-dark">Name: {{ $doctor->name }}</strong>
+                                    <p class="pl-3">Email: {{ $doctor->email }} </p>
+                                    <p class="pl-3">Gender: {{ $doctor->gender }} </p>
+                                    <p class="pl-3">Specialisation: {{ $doctor->department }} </p>
+                                    <input type="submit" class="btn btn-primary"  value="Book">
+                                </p>
+                            </div>
+                            <input type="hidden" value="{{ $timeChosen }}" name="time">
+                            <input type="hidden" value="{{ $dateChosen }}" name="date">
+                        </form>
+                    @endforeach
                 </div>
             @endif 
         </div>

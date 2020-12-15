@@ -82,18 +82,21 @@ class PatientController extends Controller
         $date = $request->date;
         $time = $request->time[0];
         //get records of available slots for time chosen 
-        $timeSlots = DB::table('appointments')
-                        ->join('times', function($join) use ($date, $time){
-                            $join->on('appointments.id', '=', 'times.appointment_id')
-                                ->where('appointments.date', '=', $date)
-                                ->where('times.patient_id', '=', NULL)
-                                ->where('times.time', '=', $time);
-                        })
-                        ->get();
+        $availableDoctors = DB::table('appointments')
+                            ->join('times', function($join) use ($date, $time){
+                                $join->on('appointments.id', '=', 'times.appointment_id')
+                                    ->where('appointments.date', '=', $date)
+                                    ->where('times.patient_id', '=', NULL)
+                                    ->where('times.time', '=', $time);
+                            })
+                            ->join('users', function($join){
+                                $join->on('appointments.user_id', '=', 'users.id');
+                            })
+                            ->get();
+        
+/*         $doc_info_arr = array();
 
-        $doc_info_arr = array();
-        //get doctor info based on app_id
-        foreach($timeSlots as $d)
+        foreach($availableDoctors as $d)
         {
             $doc_id = Appointment::where('id', $d->appointment_id)
                                     ->first()
@@ -102,15 +105,16 @@ class PatientController extends Controller
             $doc_info_arr[$doc_id] = User::where('id', $doc_id)
                                             ->first()
                                             ->name;
-        }
-
-        return view('patient.book', ['doc_info_arr' => $doc_info_arr, 
+        } */
+        //dd($availableDoctors);
+        return view('patient.book', ['availableDoctors' => $availableDoctors, 
                                     'dateChosen' => $date, 
                                     'timeChosen' => $time]);
     }
 
     public function update(Request $request)
     {
+        dd($request->all());
         $app_id = Appointment::where('date', $request->date)
                                 ->where('user_id', $request->doctor)
                                 ->first()

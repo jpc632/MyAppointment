@@ -42,13 +42,12 @@ class AvailabilityController extends Controller
 
         return redirect()->back()->with('message', 'Shift create for' . $request->date);
     }
-    //FIXME: broken
-    //Display Availability based on date
+    
     public function show(Request $request, $id)
     {
         $availability = Appointment::where('date', $request->date)->where('user_id', $id)->first();
         if (!$availability)
-            return redirect()->to('appointment')->with('message', 'No shifts for this date.');
+            return redirect()->to('availability')->with('message', 'No shifts for this date.');
 
         $timesArr = Time::where('appointment_id', $availability->id)->get();
         $date = $request->date;
