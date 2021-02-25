@@ -24,6 +24,8 @@ class PatientController extends Controller
                             $join->on('users.id', '=', 'appointments.user_id');
                         })
                         ->get();
+    
+        //dd($timesArr);
         
         
         return view('patient.index', ['timesArr' => $timesArr]);
@@ -94,29 +96,22 @@ class PatientController extends Controller
                             })
                             ->get();
         
-/*         $doc_info_arr = array();
 
-        foreach($availableDoctors as $d)
-        {
-            $doc_id = Appointment::where('id', $d->appointment_id)
-                                    ->first()
-                                    ->user_id;
-
-            $doc_info_arr[$doc_id] = User::where('id', $doc_id)
-                                            ->first()
-                                            ->name;
-        } */
-        //dd($availableDoctors);
-        return view('patient.book', ['availableDoctors' => $availableDoctors, 
-                                    'dateChosen' => $date, 
-                                    'timeChosen' => $time]);
+        return view(
+            'patient.book', 
+            [
+                'availableDoctors' => $availableDoctors, 
+                'dateChosen' => $date, 
+                'timeChosen' => $time
+            ]
+        );
     }
 
     public function update(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
         $app_id = Appointment::where('date', $request->date)
-                                ->where('user_id', $request->doctor)
+                                ->where('user_id', $request->id)
                                 ->first()
                                 ->id;
 
@@ -129,5 +124,21 @@ class PatientController extends Controller
         ]);
 
         return redirect()->route('patient.book')->with('message', 'Appointment booked successfully!');
+    }
+
+    public function delete(Request $request)
+    {
+        //dd($request->all());
+        $appointmentToCancel = Time::where('appointment_id', '=', $request->appointment_id)
+            ->where('time', '=',$request->time)
+            ->where('patient_id', '=', Auth::user()->id)
+            ->first();
+        //dd($appointmentToCancel);
+        
+        $appointmentToCancel->update(['patient_id' => null]);
+
+        return redirect()->route('patient.index')->with('message', 'Appointment cancelled successfully!');
+        
+        
     }
 }
