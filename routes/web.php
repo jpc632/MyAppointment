@@ -4,6 +4,8 @@ use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -15,14 +17,16 @@ Route::get('/dashboard', function () {
 });
 
 //Patient CRUD
-Route::get('/index', [App\Http\Controllers\PatientController::class, 'index'])->name('patient.index');
-Route::put('/index/delete', [App\Http\Controllers\PatientController::class, 'delete'])->name('patient.delete');
-Route::post('/book/show', [App\Http\Controllers\PatientController::class, 'show'])->name('patient.show');
-Route::post('/book/doctors', [App\Http\Controllers\PatientController::class, 'viewDoctors'])->name('patient.viewDoctors');
-Route::get('/book', [App\Http\Controllers\PatientController::class, 'book'])->name('patient.book');
-Route::put('/book', [App\Http\Controllers\PatientController::class, 'update'])->name('patient.update');
+Route::group(['middleware' => ['auth', 'patient']], function () {
 
-Auth::routes();
+    Route::get('/index', [App\Http\Controllers\PatientController::class, 'index'])->name('patient.index');
+    Route::put('/index/delete', [App\Http\Controllers\PatientController::class, 'delete'])->name('patient.delete');
+    Route::post('/book/show', [App\Http\Controllers\PatientController::class, 'show'])->name('patient.show');
+    Route::post('/book/doctors', [App\Http\Controllers\PatientController::class, 'viewDoctors'])->name('patient.viewDoctors');
+    Route::get('/book', [App\Http\Controllers\PatientController::class, 'book'])->name('patient.book');
+    Route::put('/book', [App\Http\Controllers\PatientController::class, 'update'])->name('patient.update');
+
+});
 
 //admin CRUD
 Route::resource('/staff', App\Http\Controllers\StaffController::class)->middleware('admin:view');

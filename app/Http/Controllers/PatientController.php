@@ -25,9 +25,6 @@ class PatientController extends Controller
                         })
                         ->get();
     
-        //dd($timesArr);
-        
-        
         return view('patient.index', ['timesArr' => $timesArr]);
     }
 
@@ -109,7 +106,6 @@ class PatientController extends Controller
 
     public function update(Request $request)
     {
-        //dd($request->all());
         $app_id = Appointment::where('date', $request->date)
                                 ->where('user_id', $request->id)
                                 ->first()
@@ -128,17 +124,13 @@ class PatientController extends Controller
 
     public function delete(Request $request)
     {
-        //dd($request->all());
         $appointmentToCancel = Time::where('appointment_id', '=', $request->appointment_id)
             ->where('time', '=',$request->time)
             ->where('patient_id', '=', Auth::user()->id)
             ->first();
-        //dd($appointmentToCancel);
         
         $appointmentToCancel->update(['patient_id' => null]);
 
         return redirect()->route('patient.index')->with('message', 'Appointment cancelled successfully!');
-        
-        
     }
 }

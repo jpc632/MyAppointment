@@ -13,7 +13,7 @@
                 <thead>
                     <tr class="">
                         <th>Doctor</th>
-                        <th>Gender</th>
+                        <th>Email</th>
                         <th>Date</th>
                         <th>Time</th>
                         <th>Cancel</th>
@@ -26,14 +26,12 @@
                         @method('PUT')
                         <tr class="">
                             <td>{{ $time->name }}</td>
-                            <td>{{ $time->gender }}</td>
+                            <td>{{ $time->email }}</td>
                             <td>{{ $time->date }}</td>
                             <td>{{ $time->time }}</td>
                             <td>
                                 <div class="table-actions ">
-
-                                        <input type="submit" value="X" class="btn btn-primary btn-link btn-sm" style=" width:55px;">
-
+                                    <input type="submit" value="X" class="btn btn-primary btn-link btn-sm" style=" width:55px;">
                                 </div>
                             </td>
                         </tr>

@@ -107,8 +107,8 @@ nav {
 }
 
 .user {
-  padding-top: 25rem;
-  justify-self: flex-end;
+  padding-top: 30px;
+  
 }
 
 .links{
@@ -233,20 +233,7 @@ input[type="submit"] {
     cursor: pointer;
 }
 
-.time-layout > form > input[type="submit"] {
-  width: 100px;
-  align-self: center;
-  cursor: pointer;
-  outline: none;
-    background: linear-gradient(
-    to right bottom,
-    rgba(255, 255, 255, 0.7),
-    rgba(255, 255, 255, 0.3)
-  );
-  border: none;
-  padding: 0.5rem;
-  border-radius: 2rem;
-}
+
 /**************************************************/
 /* SELECT DOCTOR SECTION */
 

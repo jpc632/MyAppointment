@@ -48,7 +48,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <input type="submit" value="Next" />
+                <input type="submit" value="Next" class="btn btn-primary"/>
             </form>
         </div>
     @endif
@@ -69,7 +69,7 @@
                             <p>Specialisation: {{ $doctor->department }}</p>
                         </div>
                         <div>
-                            <input type="submit" value="Book" />
+                            <input type="submit" value="Book" class="btn btn-primary"/>
                         </div>
                         <input type="hidden" value="{{ $timeChosen }}" name="time" />
                         <input type="hidden" value="{{ $dateChosen }}" name="date" />
