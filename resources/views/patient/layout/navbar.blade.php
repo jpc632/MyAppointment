@@ -18,8 +18,8 @@
         </div>
     </div>
 
-    <div style="height: 100%; display:flex; align-items: end">
-        <form method="POST" action="{{ route('logout') }}" style="margin-bottom: 25px">
+    <div style="height: 100%; display:flex; align-items: flex-end;">
+        <form method="POST" action="{{ route('logout') }}" style="margin-bottom: 25px;">
             @csrf
             <input type="submit" value="logout"/>
         </form>

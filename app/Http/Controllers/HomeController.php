@@ -26,6 +26,6 @@ class HomeController extends Controller
     {
         if(Auth::user()->role->name == 'admin' || Auth::user()->role->name == 'doctor')
             return redirect()->to('/dashboard');
-        return view('home');
+        return redirect()->to('/index');
     }
 }
